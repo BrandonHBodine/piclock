@@ -26,7 +26,7 @@ router.get('/', function(req, res, next) {
 
   blinky();
   res.render('index', {
-    title: 'Express'
+    title: 'Pi Clock'
   });
 });
 
