@@ -25,8 +25,9 @@ router.get('/', function(req, res, next) {
   }
 
   blinky();
+
   res.render('index', {
-    title: 'Pi Clock'
+    title: 'Pi Clock',
   });
 });
 
