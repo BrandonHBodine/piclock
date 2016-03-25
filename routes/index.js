@@ -34,4 +34,34 @@ router.get('/', function(req, res, next) {
   });
 });
 
+// Get Alarms
+router.get('/alarms', function(req, res, next) {
+  knex.select()
+    .from('alarms')
+    .then(function(data) {
+      res.json(data);
+    });
+});
+
+router.post('/alarms/add', function(req, res, next) {
+  console.log(req.body);
+  var alarm = {};
+  alarm.name = req.body.name;
+  alarm.sun = req.body.sun || false;
+  alarm.mon = req.body.mon || false;
+  alarm.tue = req.body.tue || false;
+  alarm.wed = req.body.wed || false;
+  alarm.thu = req.body.thu || false;
+  alarm.fri = req.body.fri || false;
+  alarm.sat = req.body.sat || false;
+  alarm.hour = req.body.hour;
+  alarm.min = req.body.minutes;
+  alarm.created_at = new Date().toUTCString();
+  alarm.updated_at = new Date().toUTCString();
+  // Create databse record
+  knex('alarms').insert(alarm).then(function(response) {
+    res.send(response);
+  });
+
+});
 module.exports = router;

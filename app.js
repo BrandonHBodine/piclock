@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var cors = require('cors');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -16,6 +17,7 @@ app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(cors());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -56,5 +58,14 @@ app.use(function(err, req, res, next) {
   });
 });
 
+// This will be the function that checks the database and will call functions based on when they are on or off
+setInterval(monitorAlarms, 60000);
+
+function monitorAlarms() {
+  var thing = new Date();
+  var hours = thing.getHours();
+  var minutes = thing.getMinutes();
+  console.log('Time: Hours: ' + hours + ' Minutes: ' + minutes);
+} ;
 
 module.exports = app;
