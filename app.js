@@ -141,7 +141,6 @@ function postLedOn() {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
-      'Content-Length': postData.length
     }
   };
 
