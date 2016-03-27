@@ -5,9 +5,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors');
+var knex = require('db/knex');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
 var ledControls = require('./routes/ledControls');
 
 var app = express();
@@ -26,7 +26,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
 app.use('/ledControls', ledControls);
 
 // catch 404 and forward to error handler
@@ -67,6 +66,7 @@ function monitorAlarms() {
   var thing = new Date();
   var hours = thing.getHours();
   var minutes = thing.getMinutes();
+  knex.
   console.log('Time: Hours: ' + hours + ' Minutes: ' + minutes);
 } ;
 
