@@ -66,10 +66,22 @@ function monitorAlarms() {
   var thing = new Date();
   var hours = thing.getHours();
   var minutes = thing.getMinutes();
+  var day = parseDaysOfWeek(thing.getDay());
+
   knex.select().table('alarms').then(function(rows){
     console.log(rows);
-  })
-  console.log('Time: Hours: ' + hours + ' Minutes: ' + minutes);
-} ;
+  });
+  console.log('Day: ' + day + 'Time: Hours: ' + hours + ' Minutes: ' + minutes);
+};
+
+function parseDaysOfWeek(num) {
+  if (num === 0) { return 'sun' }
+  else if (num === 1) { return 'mon' }
+  else if (num === 2) { return 'tue' }
+  else if (num === 3) { return 'wed' }
+  else if (num === 4) { return 'thu' }
+  else if (num === 5) { return 'fri' }
+  else if (num === 6) { return 'sat' }
+}
 
 module.exports = app;
