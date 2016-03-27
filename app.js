@@ -137,7 +137,7 @@ function postLedOn() {
   var options = {
     hostname: 'localhost',
     port: process.env.PORT,
-    path: '/on',
+    path: 'localhost' +   process.env.PORT + '/on',
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
@@ -155,7 +155,7 @@ function postLedOn() {
   });
 
   ledOnReq.end();
-  
+
 };
 
 function postLedOff() {
