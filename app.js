@@ -70,9 +70,7 @@ function monitorAlarms() {
   var ampm = getAmOrPm(time)
   var normalHours = normalizeHours(hours);
 
-  knex.select().table('alarms').then(function(rows){
-    console.log(rows);
-  });
+  alarmCheck(day, normalHours, minutes, ampm);
   console.log('Day: ' + day + ' Time: Hours: ' + normalHours + ' Minutes: ' + minutes + ' ' + ampm);
 };
 
@@ -103,7 +101,20 @@ function normalizeHours(fullHour) {
   return hour;
 }
 
-function alarmCheck(){
+function alarmCheck(dayNow, hourNow, minutesNow, ampmNow ){
+  var check = {};
+  check[dayNow] = true;
+  check.hour = hourNow;
+  check.min = minutesNow;
+  check[ampmNow] = true;
+
+  knex.select()
+  .table('alarms')
+  .where(check)
+  .then(function(rows){
+    console.log('ALARM FOUND!!!!');
+    console.log(rows);
+  });
 
 }
 
