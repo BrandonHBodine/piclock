@@ -153,6 +153,9 @@ function postLedOn() {
   ledOnReq.on('error', function() {
     console.log(`problem with request`);
   });
+
+  ledOnReq.end();
+  
 };
 
 function postLedOff() {

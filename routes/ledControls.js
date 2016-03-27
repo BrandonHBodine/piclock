@@ -39,7 +39,7 @@ router.get('/', function(req, res, next) {
 router.get('/on', function(req, res, next) {
   ledOn();
   res.render('index', {
-    title: 'LED off!',
+    title: 'LED ON!',
   });
 
 });
@@ -48,7 +48,7 @@ router.get('/on', function(req, res, next) {
 router.get('/off', function(req, res, next) {
   ledOff();
   res.render('index', {
-    title: 'Pi Clock',
+    title: 'LED OFF!',
   });
 });
 
