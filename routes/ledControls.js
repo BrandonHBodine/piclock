@@ -12,7 +12,7 @@ function ledOn() {
   led.writeSync(0);
 }
 
-function ledOff(){
+function ledOff() {
   led.writeSync(1);
 }
 
@@ -21,10 +21,16 @@ function exit() {
   process.exit();
 }
 
+function status() {
+  var st = led.readSync()
+  return led;
+}
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  var state = status();
+  console.log(state);
   res.render('index', {
-    title: 'Nothing yet but maybe a status of the led',
+    title: state
   });
 
 });
