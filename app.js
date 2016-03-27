@@ -8,7 +8,7 @@ var cors = require('cors');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var ledControls = require('./routesledControls');
+var ledControls = require('./routes/ledControls');
 
 var app = express();
 
