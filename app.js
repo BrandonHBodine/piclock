@@ -103,4 +103,8 @@ function normalizeHours(fullHour) {
   return hour;
 }
 
+function alarmCheck(){
+
+}
+
 module.exports = app;

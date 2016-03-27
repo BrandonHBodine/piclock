@@ -14,8 +14,11 @@ router.get('/', function(req, res, next) {
 
 // Get Alarms
 router.get('/alarms', function(req, res, next) {
-
-
+  knex.select()
+    .from('alarms')
+    .then(function(data) {
+      res.json(data);
+    });
 });
 
 router.post('/alarms/add', function(req, res, next) {
