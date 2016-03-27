@@ -3,32 +3,9 @@ var express = require('express');
 var router = express.Router();
 var knex = require('../db/knex');
 
-// Disabled for development on mac
-var Gpio = require('onoff').Gpio;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  // Disabled for development on mac
-  // Avliable to the whole route. Will most likely have to move elsewhere
-  var led = new Gpio(19, 'out');
-
-  function ledOn() {
-    //Since we unexport the GPIO we will have to import it again
-    var led = new Gpio(19, 'out');
-    led.writeSync(0);
-  }
-
-  function ledOff(){
-    led.writeSync(1);
-  }
-
-  function exit() {
-    led.unexport();
-    process.exit();
-  }
-
-  ledOff();
-
   res.render('index', {
     title: 'Pi Clock',
   });
