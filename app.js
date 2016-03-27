@@ -68,7 +68,7 @@ function monitorAlarms() {
   var minutes = time.getMinutes();
   var day = parseDaysOfWeek(time.getDay());
   var ampm = getAmOrPm(time)
-  var normalHours = normalHours(hours);
+  var normalHours = normalizeHours(hours);
 
   knex.select().table('alarms').then(function(rows){
     console.log(rows);
