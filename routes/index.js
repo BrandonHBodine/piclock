@@ -18,13 +18,17 @@ router.get('/', function(req, res, next) {
     led.writeSync(0);
   }
 
+  function ledOff(){
+    led.writeSync(1);
+  }
+
   function exit() {
     led.unexport();
     process.exit();
   }
 
-  ledOn();
-  
+  ledOff();
+
   res.render('index', {
     title: 'Pi Clock',
   });
