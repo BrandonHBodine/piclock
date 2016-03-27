@@ -4,34 +4,31 @@ var router = express.Router();
 var knex = require('../db/knex');
 
 // Disabled for development on mac
-//var Gpio = require('onoff').Gpio;
+var Gpio = require('onoff').Gpio;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   // Disabled for development on mac
-  // function blinky() {
-  //   var led = new Gpio(21, 'out'); // Export GPIO #14 as an output.
-  //   var iv;
-  //
-  //   // Toggle the state of the LED on GPIO #14 every 200ms.
-  //   // Here synchronous methods are used. Asynchronous methods are also available.
-  //   iv = setInterval(function() {
-  //     led.writeSync(led.readSync() ^ 1);
-  //   }, 200);
-  //
-  //   // Stop blinking the LED and turn it off after 5 seconds.
-  //   setTimeout(function() {
-  //     clearInterval(iv); // Stop blinking
-  //     led.writeSync(0); // Turn LED off.
-  //     led.unexport(); // Unexport GPIO and free resources
-  //   }, 5000);
-  // }
-  //
-  // blinky();
+  // Avliable to the whole route. Will most likely have to move elsewhere
+  var led = new Gpio(19, 'out');
 
+  function ledOn() {
+    //Since we unexport the GPIO we will have to import it again
+    var led = new Gpio(19, 'out');
+    led.writeSync(0);
+  }
+
+  function exit() {
+    led.unexport();
+    process.exit();
+  }
+
+  ledOn();
+  
   res.render('index', {
     title: 'Pi Clock',
   });
+
 });
 
 // Get Alarms
@@ -75,11 +72,11 @@ router.get('/alarms/:id', function(req, res, next) {
 router.delete('/alarms/:id', function(req, res, next) {
   var id = req.params.id;
   knex('alarms')
-  .where('id', id)
-  .del()
-  .then(function(row){
+    .where('id', id)
+    .del()
+    .then(function(row) {
       res.send(row);
-  });
+    });
 });
 
 module.exports = router;
