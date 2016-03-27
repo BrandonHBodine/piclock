@@ -21,7 +21,9 @@ app.set('view engine', 'jade');
 app.use(cors());
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -75,18 +77,26 @@ function monitorAlarms() {
 };
 
 function parseDaysOfWeek(num) {
-  if (num === 0) { return 'sun' }
-  else if (num === 1) { return 'mon' }
-  else if (num === 2) { return 'tue' }
-  else if (num === 3) { return 'wed' }
-  else if (num === 4) { return 'thu' }
-  else if (num === 5) { return 'fri' }
-  else if (num === 6) { return 'sat' }
+  if (num === 0) {
+    return 'sun'
+  } else if (num === 1) {
+    return 'mon'
+  } else if (num === 2) {
+    return 'tue'
+  } else if (num === 3) {
+    return 'wed'
+  } else if (num === 4) {
+    return 'thu'
+  } else if (num === 5) {
+    return 'fri'
+  } else if (num === 6) {
+    return 'sat'
+  }
 }
 
 function getAmOrPm(dateObj) {
   var hours = dateObj.getHours();
-  if (hours < 12 ) {
+  if (hours < 12) {
     return 'am';
   } else {
     return 'pm';
@@ -95,13 +105,13 @@ function getAmOrPm(dateObj) {
 
 function normalizeHours(fullHour) {
   var hour = fullHour;
-  if ( hour > 12) {
+  if (hour > 12) {
     hour -= 12;
   }
   return hour;
 }
 
-function alarmCheck(dayNow, hourNow, minutesNow, ampmNow ){
+function alarmCheck(dayNow, hourNow, minutesNow, ampmNow) {
   var check = {};
   check[dayNow] = true;
   check.hour = hourNow;
@@ -109,12 +119,16 @@ function alarmCheck(dayNow, hourNow, minutesNow, ampmNow ){
   check[ampmNow] = true;
 
   knex.select()
-  .table('alarms')
-  .where(check)
-  .then(function(rows){
-    console.log('ALARM FOUND!!!!');
-    console.log(rows);
-  });
+    .table('alarms')
+    .where(check)
+    .then(function(rows) {
+      if (rows.length > 0) {
+        console.log('ALARM FOUND!!!!');
+        console.log(rows);
+      } else (
+        console.log('No alarms found, stay asleep sweet prince.');
+      )
+    });
 
 }
 
