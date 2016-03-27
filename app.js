@@ -134,8 +134,8 @@ function alarmCheck(dayNow, hourNow, minutesNow, ampmNow) {
 }
 
 function postLedOn() {
-  
-  request.post('http://localhost:'+ process.env.PORT + '/on', {form:{led:'on'}});
+
+  request.post('http://localhost:'+ process.env.PORT + 'ledControls/on', {form:{led:'on'}});
 
 };
 
