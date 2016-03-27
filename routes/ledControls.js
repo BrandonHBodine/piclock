@@ -52,6 +52,19 @@ router.get('/off', function(req, res, next) {
   });
 });
 
+/* Will use post routes when testing is finished */
+/* LED ON */
+router.post('/on', function(req, res, next) {
+  ledOn();
+  res.json('on');
+});
+
+/* LED OFF */
+router.post('/off', function(req, res, next) {
+  ledOff();
+  res.json('off')
+});
+
 
 
 
