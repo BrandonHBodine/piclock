@@ -55,13 +55,31 @@ router.post('/alarms/add', function(req, res, next) {
   alarm.fri = req.body.fri || false;
   alarm.sat = req.body.sat || false;
   alarm.hour = req.body.hour;
-  alarm.min = req.body.minutes;
+  alarm.min = req.body.min;
+  alarm.am = req.body.am;
+  alarm.pm = req.body.pm;
   alarm.created_at = new Date().toUTCString();
   alarm.updated_at = new Date().toUTCString();
   // Create databse record
   knex('alarms').insert(alarm).then(function(response) {
     res.send(response);
   });
-
 });
+
+// Get Alarms
+router.get('/alarms/:id', function(req, res, next) {
+  var id = req.params.id;
+  res.send(id);
+});
+
+router.delete('/alarms/:id', function(req, res, next) {
+  var id = req.params.id;
+  knex('alarms')
+  .where('id', id)
+  .del()
+  .then(function(row){
+      res.send(row);
+  });
+});
+
 module.exports = router;
