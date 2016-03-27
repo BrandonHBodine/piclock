@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors');
-var knex = require('db/knex');
+var knex = require('./db/knex.js');
 
 var routes = require('./routes/index');
 var ledControls = require('./routes/ledControls');
