@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var knex = require('./db/knex.js');
-var request = require('request');
+
 
 var routes = require('./routes/index');
 var ledControls = require('./routes/ledControls');
@@ -134,8 +134,27 @@ function alarmCheck(dayNow, hourNow, minutesNow, ampmNow) {
 }
 
 function postLedOn() {
+  var options = {
+    hostname: 'localhost',
+    port: process.env.PORT,
+    path: 'localhost' +   process.env.PORT + 'ledControls/on',
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    }
+  };
 
-  request.post('http://localhost:'+ process.env.PORT + 'ledControls/on', {form:{led:'on'}});
+  var ledOnReq = http.request(options, function(res) {
+    res.on('end',function(){
+      console.log('No more data in response.')
+    })
+  });
+
+  ledOnReq.on('error', function() {
+    console.log(`problem with request`);
+  });
+
+  ledOnReq.end();
 
 };
 
