@@ -66,7 +66,9 @@ function monitorAlarms() {
   var thing = new Date();
   var hours = thing.getHours();
   var minutes = thing.getMinutes();
-  knex.
+  knex.select().table('alarms').then(funciton(rows){
+    console.log(rows);
+  })
   console.log('Time: Hours: ' + hours + ' Minutes: ' + minutes);
 } ;
 
