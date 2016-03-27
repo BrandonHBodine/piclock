@@ -125,9 +125,9 @@ function alarmCheck(dayNow, hourNow, minutesNow, ampmNow) {
       if (rows.length > 0) {
         console.log('ALARM FOUND!!!!');
         console.log(rows);
-      } else (
+      } else {
         console.log('No alarms found, stay asleep sweet prince.');
-      )
+      }
     });
 
 }
