@@ -60,18 +60,18 @@ app.use(function(err, req, res, next) {
 });
 
 // This will be the function that checks the database and will call functions based on when they are on or off
-setInterval(monitorAlarms, 60000);
+setInterval(monitorAlarms, 30000);
 
 function monitorAlarms() {
-  var thing = new Date();
-  var hours = thing.getHours();
-  var minutes = thing.getMinutes();
-  var day = parseDaysOfWeek(thing.getDay());
-
+  var time = new Date();
+  var hours = time.getHours();
+  var minutes = time.getMinutes();
+  var day = parseDaysOfWeek(time.getDay());
+  var ampm = getAmOrPm(time)
   knex.select().table('alarms').then(function(rows){
     console.log(rows);
   });
-  console.log('Day: ' + day + 'Time: Hours: ' + hours + ' Minutes: ' + minutes);
+  console.log('Day: ' + day + ' Time: Hours: ' + hours + ' Minutes: ' + minutes + ' ' + ampm);
 };
 
 function parseDaysOfWeek(num) {
@@ -82,6 +82,15 @@ function parseDaysOfWeek(num) {
   else if (num === 4) { return 'thu' }
   else if (num === 5) { return 'fri' }
   else if (num === 6) { return 'sat' }
+}
+
+function getAmOrPm(dateObj) {
+  var hours = dateObj.getHours();
+  if (hours < 12 ) {
+    return 'am';
+  } else {
+    return 'pm';
+  }
 }
 
 module.exports = app;
