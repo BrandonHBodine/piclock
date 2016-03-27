@@ -5,7 +5,7 @@ var knex = require('../db/knex');
 
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) {
   res.render('index', {
     title: 'Pi Clock',
   });
@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 });
 
 // Get Alarms
-router.get('/alarms', function(req, res, next) {
+router.get('/alarms', function(req, res) {
   knex.select()
     .from('alarms')
     .then(function(data) {
@@ -21,7 +21,7 @@ router.get('/alarms', function(req, res, next) {
     });
 });
 
-router.post('/alarms/add', function(req, res, next) {
+router.post('/alarms/add', function(req, res) {
   console.log(req.body);
   var alarm = {};
   alarm.name = req.body.name;
@@ -45,12 +45,12 @@ router.post('/alarms/add', function(req, res, next) {
 });
 
 // Get Alarms
-router.get('/alarms/:id', function(req, res, next) {
+router.get('/alarms/:id', function(req, res) {
   var id = req.params.id;
   res.send(id);
 });
 
-router.delete('/alarms/:id', function(req, res, next) {
+router.delete('/alarms/:id', function(req, res) {
   var id = req.params.id;
   knex('alarms')
     .where('id', id)

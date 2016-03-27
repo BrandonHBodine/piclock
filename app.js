@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var knex = require('./db/knex.js');
+var http = require('http');
 
 var routes = require('./routes/index');
 var ledControls = require('./routes/ledControls');
@@ -125,10 +126,37 @@ function alarmCheck(dayNow, hourNow, minutesNow, ampmNow) {
       if (rows.length > 0) {
         console.log('ALARM FOUND!!!!');
         console.log(rows);
+        postLedOn();
       } else {
         console.log('No alarms found, stay asleep sweet prince.');
       }
     });
+}
+
+function postLedOn() {
+  var options = {
+    hostname: 'localhost',
+    port: process.env.PORT,
+    path: '/on',
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Content-Length': postData.length
+    }
+  };
+
+  var ledOnReq = http.request(options, function(res) {
+    res.on('end',function(){
+      console.log('No more data in response.')
+    })
+  });
+
+  ledOnReq.on('error', function() {
+    console.log(`problem with request`);
+  });
+};
+
+function postLedOff() {
 
 }
 
