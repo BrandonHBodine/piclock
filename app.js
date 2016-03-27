@@ -68,10 +68,12 @@ function monitorAlarms() {
   var minutes = time.getMinutes();
   var day = parseDaysOfWeek(time.getDay());
   var ampm = getAmOrPm(time)
+  var normalHours = normalHours(hours);
+
   knex.select().table('alarms').then(function(rows){
     console.log(rows);
   });
-  console.log('Day: ' + day + ' Time: Hours: ' + hours + ' Minutes: ' + minutes + ' ' + ampm);
+  console.log('Day: ' + day + ' Time: Hours: ' + normalHours + ' Minutes: ' + minutes + ' ' + ampm);
 };
 
 function parseDaysOfWeek(num) {
@@ -91,6 +93,14 @@ function getAmOrPm(dateObj) {
   } else {
     return 'pm';
   }
+}
+
+function normalizeHours(fullHour) {
+  var hour = fullHour;
+  if ( hour > 12) {
+    hour -= 12;
+  }
+  return hour;
 }
 
 module.exports = app;
