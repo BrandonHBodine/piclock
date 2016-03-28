@@ -129,6 +129,7 @@ function alarmCheck(dayNow, hourNow, minutesNow, ampmNow) {
         console.log('ALARM FOUND!!!!');
         console.log(rows);
         postLedOn();
+        postMp3On();
       } else {
         console.log('No alarms found, stay asleep sweet prince.');
       }
@@ -157,6 +158,31 @@ function postLedOn() {
   });
 
   ledOnReq.end();
+
+};
+
+function postMp3On() {
+  var options = {
+    hostname: 'localhost',
+    port: process.env.PORT,
+    path:'/mp3Controls/on',
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    }
+  };
+
+  var mp3OnReq = http.request(options, function(res) {
+    res.on('end',function(){
+      console.log('No more data in response.')
+    })
+  });
+
+  mp3OnReq.on('error', function() {
+    console.log(`problem with request`);
+  });
+
+  mp3OnReq.end();
 
 };
 
