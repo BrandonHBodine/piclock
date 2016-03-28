@@ -1,7 +1,6 @@
 'use strict';
 var express = require('express');
 var router = express.Router();
-var player = require('player');
 var fs = require('fs');
 var lame = require('lame');
 var Speaker = require('speaker');
@@ -14,11 +13,9 @@ function startMP3(mp3) {
     });
 };
 
-
-
 /* GET home page. */
 router.get('/', function(req, res) {
-  
+
   startMP3('Circle-Of-Life.mp3');
   res.render('index', {
     title: 'MPS Controls',
