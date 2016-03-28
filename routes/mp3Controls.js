@@ -15,8 +15,6 @@ function startMP3(mp3) {
 
 /* GET home page. */
 router.get('/', function(req, res) {
-
-  startMP3('Circle-Of-Life.mp3');
   res.render('index', {
     title: 'MPS Controls',
   });
@@ -24,7 +22,7 @@ router.get('/', function(req, res) {
 
 /* Testing route to turn on music */
 router.get('/on', function(req, res){
-  playlist.play();
+  startMP3('../mp3/Circle-Of-Life.mp3');
   res.render('index', {
     title: 'MP3 ON!',
   });
@@ -33,7 +31,6 @@ router.get('/on', function(req, res){
 
 /* Testing route to turn off music */
 router.get('/off', function(req, res){
-  playlist.stop();
   res.render('index', {
     title: 'MP3 OFF!',
   });
