@@ -1,14 +1,10 @@
 'use strict';
 var express = require('express');
 var router = express.Router();
-var player = require('player');
+var Player = require('player');
 
-var playlist = player([
-  '../mp3/CircleOfLife.mp3',
-  '../mp3/CircleOfLife.mp3',
-  '../mp3/CircleOfLife.mp3',
-  '../mp3/CircleOfLife.mp3'
-]);
+// create player instance
+var player = new Player('../mp3/CircleOfLife.mp3');
 
 
 /* GET home page. */
@@ -20,7 +16,7 @@ router.get('/', function(req, res) {
 
 /* Testing route to turn on music */
 router.get('/on', function(req, res){
-  playlist.play();
+  player.play();
   res.render('index', {
     title: 'MP3 ON!',
   });
@@ -29,7 +25,7 @@ router.get('/on', function(req, res){
 
 /* Testing route to turn off music */
 router.get('/off', function(req, res){
-  playlist.stop();
+  player.stop();
   res.render('index', {
     title: 'MP3 OFF!',
   });
