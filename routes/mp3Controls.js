@@ -6,7 +6,6 @@ var Player = require('player');
 // create player instance
 var player = new Player('../mp3/CircleOfLife.mp3');
 
-
 /* GET home page. */
 router.get('/', function(req, res) {
   res.render('index', {
