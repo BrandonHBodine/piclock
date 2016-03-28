@@ -166,7 +166,7 @@ function postMp3On() {
     hostname: 'localhost',
     port: process.env.PORT,
     path:'/mp3Controls/on',
-    method: 'POST',
+    method: 'GET',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     }
