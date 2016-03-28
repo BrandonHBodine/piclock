@@ -10,6 +10,7 @@ var http = require('http');
 
 var routes = require('./routes/index');
 var ledControls = require('./routes/ledControls');
+var mp3Controls = require('./routes/mp3Controls');
 
 var app = express();
 
@@ -30,6 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/ledControls', ledControls);
+app.use('/mp3Controls', mp3Controls);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

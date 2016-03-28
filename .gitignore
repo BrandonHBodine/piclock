@@ -31,3 +31,6 @@ npm-debug.log
 
 # Dotenv
 .env
+
+# Mac Desktop Store
+.DS_Store

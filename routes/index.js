@@ -55,8 +55,8 @@ router.delete('/alarms/:id', function(req, res) {
   knex('alarms')
     .where('id', id)
     .del()
-    .then(function(row) {
-      res.send(row);
+    .then(function() {
+      res.sendStatus('Alarm with deleted with id: ' + id);
     });
 });
 
