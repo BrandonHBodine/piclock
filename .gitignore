@@ -34,3 +34,7 @@ npm-debug.log
 
 # Mac Desktop Store
 .DS_Store
+
+# ssl stuff
+ssl/
+ssl
