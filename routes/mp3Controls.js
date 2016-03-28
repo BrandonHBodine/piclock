@@ -2,17 +2,24 @@
 var express = require('express');
 var router = express.Router();
 var player = require('player');
+var fs = require('fs');
+var lame = require('lame');
+var Speaker = require('speaker');
 
-var playlist = player([
-  '../mp3/CircleOfLife.mp3',
-  '../mp3/CircleOfLife.mp3',
-  '../mp3/CircleOfLife.mp3',
-  '../mp3/CircleOfLife.mp3'
-]);
+function startMP3(mp3) {
+  fs.createReadStream(mp3)
+    .pipe(new lame.Decoder())
+    .on('format', function(format) {
+      this.pipe(new Speaker(format));
+    });
+};
+
 
 
 /* GET home page. */
 router.get('/', function(req, res) {
+  
+  startMP3('Circle-Of-Life.mp3');
   res.render('index', {
     title: 'MPS Controls',
   });
