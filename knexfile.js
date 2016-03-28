@@ -6,6 +6,6 @@ require('dotenv').load({
 module.exports = {
   development: {
     client: 'pg',
-    connection: process.env.DEV_DB
+    connection: process.env.DEV_DB + '?ssl=true'
   }
 };
