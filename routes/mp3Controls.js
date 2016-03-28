@@ -1,17 +1,15 @@
 'use strict';
 var express = require('express');
 var router = express.Router();
-var fs = require('fs');
-var lame = require('lame');
-var Speaker = require('speaker');
+var player = require('player');
 
-function startMP3(mp3) {
-  fs.createReadStream(mp3)
-    .pipe(new lame.Decoder())
-    .on('format', function(format) {
-      this.pipe(new Speaker(format));
-    });
-};
+var playlist = player([
+  '../mp3/CircleOfLife.mp3',
+  '../mp3/CircleOfLife.mp3',
+  '../mp3/CircleOfLife.mp3',
+  '../mp3/CircleOfLife.mp3'
+]);
+
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -22,7 +20,7 @@ router.get('/', function(req, res) {
 
 /* Testing route to turn on music */
 router.get('/on', function(req, res){
-  startMP3('../mp3/Circle-Of-Life.mp3');
+  playlist.play();
   res.render('index', {
     title: 'MP3 ON!',
   });
@@ -31,6 +29,7 @@ router.get('/on', function(req, res){
 
 /* Testing route to turn off music */
 router.get('/off', function(req, res){
+  playlist.stop();
   res.render('index', {
     title: 'MP3 OFF!',
   });
