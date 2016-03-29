@@ -65,7 +65,7 @@ app.use(function(err, req, res, next) {
 });
 
 // This will be the function that checks the database and will call functions based on when they are on or off
-setInterval(monitorAlarms, 30000);
+setInterval(monitorAlarms, 60000);
 
 function monitorAlarms() {
   var time = new Date();
