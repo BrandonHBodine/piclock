@@ -139,7 +139,7 @@ function alarmCheck(dayNow, hourNow, minutesNow, ampmNow) {
 function postLedOn() {
   var options = {
     hostname: 'localhost',
-    port: 443,
+    port: '443',
     path:'/ledControls/on',
     method: 'POST',
     headers: {
@@ -164,7 +164,7 @@ function postLedOn() {
 function postMp3On() {
   var options = {
     hostname: 'localhost',
-    port: 443,
+    port: '443',
     path:'/mp3Controls/on',
     method: 'GET',
     headers: {
