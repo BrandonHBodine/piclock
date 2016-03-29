@@ -6,10 +6,7 @@ var knex = require('../db/knex');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', {
-    title: 'Pi Clock',
-  });
-
+  res.json({piclock: true});
 });
 
 // Get Alarms
