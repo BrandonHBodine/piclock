@@ -4,11 +4,7 @@ var router = express.Router();
 var Player = require('player');
 
 // create player instance
-var player = new Player([
-    './mp3/CircleOfLife.mp3',
-    './mp3/CircleOfLife.mp3',
-    './mp3/CircleOfLife.mp3',
-    'http://mr4.douban.com/blablablabla/p1949332.mp3']);
+var player = new Player('./mp3/CircleOfLife.mp3');
 /* GET home page. */
 router.get('/', function(req, res) {
   res.render('index', {
