@@ -139,13 +139,13 @@ function alarmCheck(dayNow, hourNow, minutesNow, ampmNow) {
 
 function postLedOn() {
   var options = {
-    hostname: 'localhost',
+    // hostname: 'localhost',
     // port: process.env.PORT,
     path:'/ledControls/on',
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    }
+    method: 'POST'
+    // headers: {
+    //   'Content-Type': 'application/x-www-form-urlencoded',
+    // }
   };
 
   var ledOnReq = https.request(options, function(res) {
@@ -164,13 +164,13 @@ function postLedOn() {
 
 function postMp3On() {
   var options = {
-    hostname: 'localhost',
+    // hostname: 'localhost',
     // port: process.env.PORT,
     path:'/mp3Controls/on',
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    }
+    method: 'GET'
+    // headers: {
+    //   'Content-Type': 'application/x-www-form-urlencoded',
+    // }
   };
 
   var mp3OnReq = https.request(options, function(res) {
