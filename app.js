@@ -155,7 +155,7 @@ function postLedOn() {
   });
 
   ledOnReq.on('error', function() {
-    console.log(`problem with request`);
+    console.log('problem with request: ' + error);
   });
 
   ledOnReq.end();
@@ -180,7 +180,7 @@ function postMp3On() {
   });
 
   mp3OnReq.on('error', function() {
-    console.log(`problem with request`);
+    console.log('problem with request: ' + error );
   });
 
   mp3OnReq.end();
