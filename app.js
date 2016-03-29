@@ -147,7 +147,7 @@ function postLedOn() {
     }
   };
 
-  var ledOnReq = http.request(options, function(res) {
+  var ledOnReq = https.request(options, function(res) {
     res.on('end',function(){
       console.log('No more data in response.')
     })
@@ -172,7 +172,7 @@ function postMp3On() {
     }
   };
 
-  var mp3OnReq = http.request(options, function(res) {
+  var mp3OnReq = https.request(options, function(res) {
     res.on('end',function(){
       console.log('No more data in response.')
     })
