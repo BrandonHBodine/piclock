@@ -3,6 +3,10 @@ var express = require('express');
 var router = express.Router();
 var Player = require('player');
 
+//Until I can make middleware this has to be here to expose the on and off functinality to the routes
+var songFile = randomSong();
+// create player instance
+var player = new Player(songFile);
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -13,9 +17,6 @@ router.get('/', function(req, res) {
 
 /* Testing route to turn on music */
 router.get('/on', function(req, res) {
-  var songFile = randomSong();
-  // create player instance
-  var player = new Player(songFile);
   player.play();
   res.render('index', {
     title: 'MP3 ON!',
