@@ -17,7 +17,9 @@ router.get('/', function(req, res) {
 
 /* Testing route to turn on music */
 router.get('/on', function(req, res) {
-  player.play();
+  player.play(function(err, player) {
+    console.log('playend!');
+  });
   res.render('index', {
     title: 'MP3 ON!',
   });
@@ -34,21 +36,21 @@ router.get('/off', function(req, res) {
 
 // Random song picker
 
-function randomSong(){
-  var song = getRandomIntInclusive(1,4);
+function randomSong() {
+  var song = getRandomIntInclusive(1, 4);
   var dir = './mp3/'
-  // Defualt song becuase tired
+    // Defualt song becuase tired
   var title = 'CircleOfLife.mp3';
   if (song === 1) {
     title = 'FlightOfTheConchords-IfYoureIntoIt.mp3';
-  } else if ( song === 2 ) {
+  } else if (song === 2) {
     title = 'LadyGaga-Alejandro.mp3';
-  } else if ( song === 3 ) {
+  } else if (song === 3) {
     title = 'SystemOfADown-ChopSuey.mp3';
   } else {
     title = 'The1975-TheSound.mp3';
   }
-  console.log('Playing ' + title);
+  console.log('Wake up song is ' + title);
   return dir + title;
 }
 
