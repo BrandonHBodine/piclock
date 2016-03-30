@@ -32,6 +32,12 @@ npm-debug.log
 # Dotenv
 .env
 
+# Song Storage
+mp3/
+mp3
+routes/mp3
+routes/mp3/
+
 # Mac Desktop Store
 .DS_Store
 
