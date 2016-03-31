@@ -18,6 +18,35 @@ router.get('/alarms', function(req, res) {
     });
 });
 
+//Get Route for presentation purpose
+// Bad Coding but should work for quickly getting presentation going
+router.get('/present', function(req, res) {
+  var timeInMs = Date.now();
+  // add three minutes
+  var threeMinutesAhead = new Date( timeInMs + 180000).toLocaleTimeString();
+  var str = threeMinutesAhead.toLocaleString();
+  var arr = str.split(':');
+  var alarm = {};
+  alarm.name = 'Presentation';
+  alarm.sun = true;
+  alarm.mon = true;
+  alarm.tue = true;
+  alarm.wed = true;
+  alarm.thu = true;
+  alarm.fri = true;
+  alarm.sat = true;
+  alarm.hour = Number(arr[0]);
+  alarm.min = Number(arr[1]);
+  alarm.am = true;
+  alarm.pm = true;
+  alarm.created_at = new Date().toUTCString();
+  alarm.updated_at = new Date().toUTCString();
+  // Create databse record
+  knex('alarms').insert(alarm).then(function(response) {
+    res.send(response);
+  });
+});
+
 router.post('/alarms/add', function(req, res) {
   console.log(req.body);
   var alarm = {};
