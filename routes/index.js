@@ -26,6 +26,10 @@ router.get('/present', function(req, res) {
   var threeMinutesAhead = new Date( timeInMs + 180000).toLocaleTimeString();
   var str = threeMinutesAhead.toLocaleString();
   var arr = str.split(':');
+  var hour = Number(arr[0]);
+  if ( hour > 12 ) {
+    hour -= 12;
+  }
   var alarm = {};
   alarm.name = 'Presentation';
   alarm.sun = true;
