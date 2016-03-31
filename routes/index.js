@@ -39,7 +39,7 @@ router.get('/present', function(req, res) {
   alarm.thu = true;
   alarm.fri = true;
   alarm.sat = true;
-  alarm.hour = Number(arr[0]);
+  alarm.hour = hour;
   alarm.min = Number(arr[1]);
   alarm.am = true;
   alarm.pm = true;
